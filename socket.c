@@ -44,24 +44,20 @@ int main(void) {
     }
 
     //accept
+    while (1) {
+      int cfd = accept(fd, (struct sockaddr*)&clientInfo, &clientSize);
+      if (cfd == -1) { perror("accept"); }
+      char buffer[1024] = {0};
+      recv(cfd, buffer, sizeof(buffer), 0);
+      printf("Client says: %s\n", buffer);
+      close(cfd);
+      
+   }
 
-    int cfd = accept(fd, (struct sockaddr*)&clientInfo, &clientSize);
-    
-     if (cfd == -1) {
-        perror("accept");
-        close(fd);
-        return -1;
-    }
+      return 0;
 
-    char buffer[1024] = {0};
-    recv(cfd, buffer, sizeof(buffer), 0);
-    printf("Client says: %s\n", buffer);
 
-    
-    close(cfd);
-    close(fd);
-    return 0;
-}
+
 
 
 

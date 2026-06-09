@@ -26,9 +26,13 @@ int main(void) {
 
     printf("Connected to server!\n");
 
+    while (1) {
     char *msg = "Hello from client!";
     send(fd, msg, 18, 0);
-
+    sleep(10);
+}
+    
     close(fd);
     return 0;
 }
+
